@@ -65,7 +65,9 @@ echo $stephane->afficherCompteBancaires();
 echo $mickael->afficherCompteBancaires();
 
 
-$cb1->debiterCompte(80);
-$cb2->crediterCompte(80);
+$cb1->debiterCompte(100);
+$cb2->crediterCompte(100);
 echo $stephane->afficherCompteBancaires();
 
+$cb1->virementCompte($cb2, 300);
+echo $stephane->afficherCompteBancaires();

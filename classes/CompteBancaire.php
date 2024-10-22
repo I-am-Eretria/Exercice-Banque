@@ -18,12 +18,12 @@ class CompteBancaire {
 
     //getter et setter
 
-    public function getLibelle()
+    public function getLibelle() : string
     {
         return $this->libelle;
     }
 
-    public function setLibelle($libelle)
+    public function setLibelle(string $libelle)
     {
         $this->libelle = $libelle;
 
@@ -32,12 +32,12 @@ class CompteBancaire {
     
 
     
-    public function getSoldeInitial()
+    public function getSoldeInitial() : float
     {
         return $this->soldeInitial;
     }
 
-    public function setSoldeInitial($soldeInitial)
+    public function setSoldeInitial(float $soldeInitial)
     {
         $this->soldeInitial = $soldeInitial;
 
@@ -46,12 +46,12 @@ class CompteBancaire {
 
 
 
-    public function getDeviseMonetaire()
+    public function getDeviseMonetaire() : string
     {
         return $this->deviseMonetaire;
     }
  
-    public function setDeviseMonetaire($deviseMonetaire)
+    public function setDeviseMonetaire(string $deviseMonetaire)
     {
         $this->deviseMonetaire = $deviseMonetaire;
 
@@ -65,7 +65,7 @@ class CompteBancaire {
         return $this->titulaire;
     }
 
-    public function setTitulaire($titulaire)
+    public function setTitulaire(Titulaire $titulaire)
     {
         $this->titulaire = $titulaire;
 
@@ -92,22 +92,43 @@ class CompteBancaire {
         return $result;
     }
 
-    // Créditer le compte de X euros 
-    // Débiter le compte de X euros 
-    // Effectuer un virement d'un compte à l'autre.
-
-    public function crediterCompte($nombre){
-        $result = $this->getSoldeInitial()+$nombre;
-        $result = $this->SetSoldeInitial($result);
-        return $result;
-    }
-
-    public function debiterCompte($nombre){
-        $result = $this->getSoldeInitial()-$nombre;
-        $result = $this->SetSoldeInitial($result);
-        return $result;
-    }
 
     
+    // Créditer le compte de X euros 
+    
+    public function crediterCompte(float $montant){
+        $result = $this->getSoldeInitial()+$montant;
+        $result = $this->SetSoldeInitial($result);
+        return $result;
+    }
 
+
+
+    // Débiter le compte de X euros 
+
+    public function debiterCompte(float $montant){
+        $result = $this->getSoldeInitial()-$montant;
+        $result = $this->SetSoldeInitial($result);
+        return $result;
+    }
+
+
+
+   // Effectuer un virement d'un compte à l'autre.
+
+    public function virementCompte(CompteBancaire $compteCible, float $montant) {
+        
+        // Débiter le compte source
+        $this->debiterCompte($montant);
+    
+        // Créditer le compte cible
+        $compteCible->crediterCompte($montant);
+    
+        // Return les nouveaux soldes
+        return [
+            'compteSource' => $this->getSoldeInitial(),
+            'compteCible' => $compteCible->getSoldeInitial(),
+        ];
+    }
+    
 }

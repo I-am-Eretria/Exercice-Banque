@@ -20,12 +20,12 @@ class Titulaire{
 
     //getter et setter
 
-    public function getNom()
+    public function getNom() : string
     {
         return $this->nom;
     }
 
-    public function setNom($nom)
+    public function setNom(string $nom)
     {
         $this->nom = $nom;
 
@@ -34,12 +34,12 @@ class Titulaire{
 
     
 
-    public function getPrenom()
+    public function getPrenom() : string
     {
         return $this->prenom;
     }
  
-    public function setPrenom($prenom)
+    public function setPrenom(string $prenom)
     {
         $this->prenom = $prenom;
 
@@ -48,13 +48,13 @@ class Titulaire{
 
     
 
-    public function getDateNaissance()
+    public function getDateNaissance() : DateTime 
     {
         return $this->dateNaissance->format("d/m/Y");
     }
     
 
-    public function setDateNaissance($dateNaissance)
+    public function setDateNaissance(DateTime $dateNaissance)
     {
         $this->dateNaissance = $dateNaissance;
 
@@ -63,12 +63,12 @@ class Titulaire{
 
     
 
-    public function getVille()
+    public function getVille() : string
     {
         return $this->ville;
     }
 
-    public function setVille($ville)
+    public function setVille(string $ville)
     {
         $this->ville = $ville;
 
@@ -82,7 +82,7 @@ class Titulaire{
         return $this->compteBancaires;
     }
 
-    public function setCompteBancaires($compteBancaires)
+    public function setCompteBancaires(CompteBancaire $compteBancaires)
     {
         $this->compteBancaires = $compteBancaires;
 
